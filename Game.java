@@ -91,27 +91,7 @@ public class Game
         System.out.println("The little creature is a new entertaining, aventure game, about a small criature that lives in the loft of a house.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        if(currentRoom.upExit != null) {
-            System.out.print("up ");
-        }
-        if(currentRoom.downExit != null) {
-            System.out.print("down ");
-        }
-        System.out.println();
+        printLocationInfo();
     }
 
     /**
@@ -198,6 +178,31 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
+            printLocationInfo();
+        }
+    }
+
+    /** 
+     * "Quit" was entered. Check the rest of the command to see
+     * whether we really quit the game.
+     * @return true, if this command quits the game, false otherwise.
+     */
+    private boolean quit(Command command) 
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Quit what?");
+            return false;
+        }
+        else {
+            return true;  // signal that we want to quit
+        }
+    }
+    
+    /**
+     * Guarda información que utilizan los metodos printWelcome y goRoom.
+     */
+    private void printLocationInfo()
+    {
             System.out.println("You are " + currentRoom.getDescription());
             System.out.print("Exits: ");
             if(currentRoom.northExit != null) {
@@ -219,22 +224,5 @@ public class Game
                 System.out.print("down ");
             }
             System.out.println();
-        }
-    }
-
-    /** 
-     * "Quit" was entered. Check the rest of the command to see
-     * whether we really quit the game.
-     * @return true, if this command quits the game, false otherwise.
-     */
-    private boolean quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        }
-        else {
-            return true;  // signal that we want to quit
-        }
     }
 }
