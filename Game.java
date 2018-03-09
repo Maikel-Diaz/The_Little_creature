@@ -49,17 +49,17 @@ public class Game
         downstairsHallway = new Room("in the downstairs hallway");
         diningRoom = new Room("in the dining room");
         // initialise room exits
-        loft.setExits(null, null, null, null, null, upstairsHallway);
-        upstairsHallway.setExits(null, stairs, upstairsBathroom, bedroom, loft, null);
-        bedroom.setExits(null, upstairsHallway, null, null, null, null);
-        upstairsBathroom.setExits(upstairsHallway, null, null, null, null, null);
-        stairs.setExits(null, null, null, upstairsHallway, null, hallOfHouse);
-        hallOfHouse.setExits(null, kitchen, exterior, livingRoom, stairs, null);
-        kitchen.setExits(null, null, null, hallOfHouse, null, null);
-        exterior.setExits(hallOfHouse, null, null, null, null, null);
-        livingRoom.setExits(downstairsHallway, hallOfHouse, null, null, null, null);
-        downstairsHallway.setExits(null, null, livingRoom, diningRoom, null, null);
-        diningRoom.setExits(null, downstairsHallway, null, null, null, null);
+        loft.setExits(null, null, null, null, null, upstairsHallway, null);
+        upstairsHallway.setExits(null, stairs, upstairsBathroom, bedroom, loft, null, null);
+        bedroom.setExits(null, upstairsHallway, null, null, null, null, null);
+        upstairsBathroom.setExits(upstairsHallway, null, null, null, null, null, null);
+        stairs.setExits(null, null, null, upstairsHallway, null, hallOfHouse, null);
+        hallOfHouse.setExits(null, kitchen, exterior, livingRoom, stairs, null, null);
+        kitchen.setExits(null, null, null, hallOfHouse, null, null, null);
+        exterior.setExits(hallOfHouse, null, null, null, null, null, null);
+        livingRoom.setExits(downstairsHallway, hallOfHouse, null, null, null, null, null);
+        downstairsHallway.setExits(null, null, livingRoom, diningRoom, null, null, null);
+        diningRoom.setExits(null, downstairsHallway, null, null, null, null, livingRoom);
         currentRoom = loft;  // start game outside
     }
 
@@ -172,6 +172,9 @@ public class Game
         if(direction.equals("down")) {
             nextRoom = currentRoom.downExit;
         }
+        if(direction.equals("southeast")) {
+            nextRoom = currentRoom.southeastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -222,6 +225,9 @@ public class Game
             }
             if(currentRoom.downExit != null) {
                 System.out.print("down ");
+            }
+            if(currentRoom.southeastExit != null) {
+                System.out.print("southeast ");
             }
             System.out.println();
     }
