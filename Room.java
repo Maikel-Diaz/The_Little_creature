@@ -14,14 +14,14 @@
  */
 public class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room upExit;
-    public Room downExit;
-    public Room southeastExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room upExit;
+    private Room downExit;
+    private Room southeastExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -68,6 +68,69 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+
+    /**
+     * 
+     */
+    public Room getExit(String direction)
+    {
+        Room roomReturned = null;
+        if(direction.equals("north")){
+            roomReturned = northExit;
+        }
+        if(direction.equals("east")){
+            roomReturned = eastExit;
+        }
+        if(direction.equals("south")){
+            roomReturned = southExit;
+        }
+        if(direction.equals("west")){
+            roomReturned = westExit;
+        }
+        if(direction.equals("up")){
+            roomReturned = upExit;
+        }
+        if(direction.equals("down")){
+            roomReturned = downExit;
+        }
+        if(direction.equals("southeast")){
+            roomReturned = southeastExit;
+        }
+        return roomReturned;
+    }
+
+    /**
+     * Return a description of the room's exits.
+     * For example: "Exits: north east west"
+     *
+     * @ return A description of the available exits.
+     */
+    public String getExitString()
+    {
+        String descriptionReturn = "";
+        if(northExit != null) {
+            descriptionReturn = descriptionReturn + "north ";
+        }
+        if(eastExit != null) {
+            descriptionReturn = descriptionReturn + "east ";
+        }
+        if(southExit != null) {
+            descriptionReturn = descriptionReturn + "south ";
+        }
+        if(westExit != null) {
+            descriptionReturn = descriptionReturn + "west ";
+        }
+        if(upExit != null) {
+            descriptionReturn = descriptionReturn + "up ";
+        }
+        if(downExit != null) {
+            descriptionReturn = descriptionReturn + "down ";
+        }
+        if(southeastExit != null) {
+            descriptionReturn = descriptionReturn + "southeast ";
+        }
+        return descriptionReturn;
     }
 
 }
