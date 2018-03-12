@@ -32,33 +32,11 @@ public class Room
     }
 
     /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
-     * @param up The up exit.
-     * @param down The down exit.
+     * Define the exits of this room.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down, Room southeast, Room northwest) 
+    public void setExit(String direction, Room nextRoom)
     {
-        if(north != null)
-            exits.put("north", north);
-        if(east != null)
-            exits.put("east", east);
-        if(south != null)
-            exits.put("south", south);
-        if(west != null)
-            exits.put("west", west);
-        if(up != null)
-            exits.put("up", up);
-        if(down != null)
-            exits.put("down", down);
-        if(southeast != null)
-            exits.put("southeast", southeast);
-        if(northwest != null)
-            exits.put("northwest", northwest);
+        exits.put(direction, nextRoom);
     }
 
     /**
@@ -74,32 +52,7 @@ public class Room
      */
     public Room getExit(String direction)
     {
-        Room roomReturned = null;
-        if(direction.equals("north")){
-            roomReturned = exits.get("north");
-        }
-        if(direction.equals("east")){
-            roomReturned = exits.get("east");
-        }
-        if(direction.equals("south")){
-            roomReturned = exits.get("south");
-        }
-        if(direction.equals("west")){
-            roomReturned = exits.get("west");
-        }
-        if(direction.equals("up")){
-            roomReturned = exits.get("up");
-        }
-        if(direction.equals("down")){
-            roomReturned = exits.get("down");
-        }
-        if(direction.equals("southeast")){
-            roomReturned = exits.get("southeast");
-        }
-        if(direction.equals("northwest")){
-            roomReturned = exits.get("northwest");
-        }
-        return roomReturned;
+        return exits.get(direction);
     }
 
     /**
@@ -110,30 +63,10 @@ public class Room
      */
     public String getExitString()
     {
-        String descriptionReturn = "";
-        if(exits.get("north") != null) {
-            descriptionReturn = descriptionReturn + "north ";
-        }
-        if(exits.get("east") != null) {
-            descriptionReturn = descriptionReturn + "east ";
-        }
-        if(exits.get("south") != null) {
-            descriptionReturn = descriptionReturn + "south ";
-        }
-        if(exits.get("west") != null) {
-            descriptionReturn = descriptionReturn + "west ";
-        }
-        if(exits.get("up") != null) {
-            descriptionReturn = descriptionReturn + "up ";
-        }
-        if(exits.get("down") != null) {
-            descriptionReturn = descriptionReturn + "down ";
-        }
-        if(exits.get("southeast") != null) {
-            descriptionReturn = descriptionReturn + "southeast ";
-        }
-        if(exits.get("northwest") != null) {
-            descriptionReturn = descriptionReturn + "northwest ";
+        Set<String> directions = exits.keySet();
+        String descriptionReturn = "Exit ";
+        for(String direction : directions){
+            descriptionReturn = descriptionReturn + direction + "  ";
         }
         return descriptionReturn;
     }

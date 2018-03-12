@@ -49,17 +49,29 @@ public class Game
         downstairsHallway = new Room("in the downstairs hallway");
         diningRoom = new Room("in the dining room");
         // initialise room exits
-        loft.setExits(null, null, null, null, null, upstairsHallway, null, null);
-        upstairsHallway.setExits(null, stairs, upstairsBathroom, bedroom, loft, null, null, null);
-        bedroom.setExits(null, upstairsHallway, null, null, null, null, null, null);
-        upstairsBathroom.setExits(upstairsHallway, null, null, null, null, null, null, null);
-        stairs.setExits(null, null, null, upstairsHallway, null, hallOfHouse, null, null);
-        hallOfHouse.setExits(null, kitchen, exterior, livingRoom, stairs, null, null, null);
-        kitchen.setExits(null, null, null, hallOfHouse, null, null, null, null);
-        exterior.setExits(hallOfHouse, null, null, null, null, null, null, null);
-        livingRoom.setExits(downstairsHallway, hallOfHouse, null, null, null, null, null, diningRoom);
-        downstairsHallway.setExits(null, null, livingRoom, diningRoom, null, null, null, null);
-        diningRoom.setExits(null, downstairsHallway, null, null, null, null, livingRoom, null);
+        loft.setExit("down", upstairsHallway);
+        upstairsHallway.setExit("east", stairs);
+        upstairsHallway.setExit("south", upstairsBathroom);
+        upstairsHallway.setExit("west", bedroom);
+        upstairsHallway.setExit("up", loft);
+        bedroom.setExit("east", upstairsHallway);
+        upstairsBathroom.setExit("north", upstairsHallway);
+        stairs.setExit("west", upstairsHallway);
+        stairs.setExit("down", hallOfHouse);
+        hallOfHouse.setExit("east", kitchen);
+        hallOfHouse.setExit("south", exterior);
+        hallOfHouse.setExit("west", livingRoom);
+        hallOfHouse.setExit("up", stairs);
+        kitchen.setExit("west", hallOfHouse);
+        exterior.setExit("north", hallOfHouse);
+        livingRoom.setExit("north", downstairsHallway);
+        livingRoom.setExit("east", hallOfHouse);
+        livingRoom.setExit("northwest", diningRoom);
+        downstairsHallway.setExit("south", livingRoom);
+        downstairsHallway.setExit("west", diningRoom);
+        diningRoom.setExit("east", downstairsHallway);
+        diningRoom.setExit("southeast", livingRoom);
+        
         currentRoom = loft;  // start game outside
     }
 
