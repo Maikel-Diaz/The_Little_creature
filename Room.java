@@ -48,7 +48,7 @@ public class Room
     }
 
     /**
-     * 
+     * Devuleve la direccion correspondiente.
      */
     public Room getExit(String direction)
     {
@@ -58,7 +58,6 @@ public class Room
     /**
      * Return a description of the room's exits.
      * For example: "Exits: north east west"
-     *
      * @ return A description of the available exits.
      */
     public String getExitString()
@@ -69,6 +68,17 @@ public class Room
             descriptionReturn = descriptionReturn + direction + "  ";
         }
         return descriptionReturn;
+    }
+
+    /**
+     * Return a long description of this room, of the form:
+     * You are in the 'name of room'
+     * Exits: north west southwest
+     * @return A description of the room, including exits.
+     */
+    public String getLongDescription()
+    {
+        return "You are " + description + ". " + "\n" + getExitString();
     }
 
 }
