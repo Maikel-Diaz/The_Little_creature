@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -35,7 +35,7 @@ public class Game
     private void createRooms()
     {
         Room loft, upstairsHallway, bedroom, upstairsBathroom, stairs, hallOfHouse, kitchen, exterior, livingRoom, downstairsHallway, diningRoom;
-      
+
         // create the rooms
         loft = new Room("In the loft of the house");
         upstairsHallway = new Room("in the upstairs hallway");
@@ -71,7 +71,7 @@ public class Game
         downstairsHallway.setExit("west", diningRoom);
         diningRoom.setExit("east", downstairsHallway);
         diningRoom.setExit("southeast", livingRoom);
-        
+
         currentRoom = loft;  // start game outside
     }
 
@@ -84,7 +84,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -129,6 +129,9 @@ public class Game
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        }
+        else if (commandWord.equals("look")) {
+            look();
         }
 
         return wantToQuit;
@@ -188,13 +191,18 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    
+
+    private void look() 
+    {
+        System.out.println(currentRoom.getLongDescription());
+    }
+
     /**
      * Guarda información que utilizan los metodos printWelcome y goRoom.
      */
     private void printLocationInfo()
     {
-            System.out.println(currentRoom.getLongDescription());
-            System.out.println();
+        System.out.println(currentRoom.getLongDescription());
+        System.out.println();
     }
 }
