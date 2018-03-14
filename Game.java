@@ -37,17 +37,17 @@ public class Game
         Room loft, upstairsHallway, bedroom, upstairsBathroom, stairs, hallOfHouse, kitchen, exterior, livingRoom, downstairsHallway, diningRoom;
 
         // create the rooms
-        loft = new Room("In the loft of the house");
-        upstairsHallway = new Room("in the upstairs hallway");
-        bedroom = new Room("in a bedroom");
-        upstairsBathroom = new Room("in the upstairs bathroom");
-        stairs = new Room("in the stairs");
-        hallOfHouse = new Room("in the hall of house");
-        kitchen = new Room("in the kitchen");
-        exterior = new Room("Brilliant!, you left the house.");
-        livingRoom = new Room("in the living room");
-        downstairsHallway = new Room("in the downstairs hallway");
-        diningRoom = new Room("in the dining room");
+        loft = new Room("In the loft of the house", new Item("is a trunk", 40));
+        upstairsHallway = new Room("in the upstairs hallway", new Item(null, 0));
+        bedroom = new Room("in a bedroom", new Item("is a bed", 75));
+        upstairsBathroom = new Room("in the upstairs bathroom", new Item("is a washing machine", 55));
+        stairs = new Room("in the stairs", new Item(null, 0));
+        hallOfHouse = new Room("in the hall of house", new Item("is a umbrella in the floor", 4));
+        kitchen = new Room("in the kitchen", new Item("is a puddle of oil", 1));
+        exterior = new Room("Brilliant!, you left the house.", new Item("is a swimming pool", 25));
+        livingRoom = new Room("in the living room", new Item("is a cat", 3));
+        downstairsHallway = new Room("in the downstairs hallway", new Item(null, 0));
+        diningRoom = new Room("in the dining room", new Item("is a table", 30));
         // initialise room exits
         loft.setExit("down", upstairsHallway);
         upstairsHallway.setExit("east", stairs);

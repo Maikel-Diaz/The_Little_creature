@@ -16,8 +16,10 @@ import java.util.*;
 public class Room 
 {
     private String description;
+    private Item itemRoom;
 
     private HashMap<String, Room> exits;
+    
 
     /**
      * Create a room described "description". Initially, it has
@@ -25,9 +27,10 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, Item itemRoom) 
     {
         this.description = description;
+        this.itemRoom = itemRoom;
         exits = new HashMap<>();
     }
 
@@ -78,7 +81,12 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ". " + "\n" + getExitString();
+        String datos = "";
+        datos = "You are " + description + ". " + "\n" + "OH! Here is something, " + itemRoom.getItemDescription() + ", weight " + itemRoom.getItemWeight() + "\n" + getExitString();
+        if(itemRoom.getItemDescription() == null){
+            datos = "You are " + description + ". " + "\n" + getExitString();
+        }
+        return datos;
     }
 
 }
