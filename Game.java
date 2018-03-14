@@ -152,8 +152,9 @@ public class Game
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("inside the house");
         System.out.println();
+        
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        parser.showCommands();
     }
 
     /** 
@@ -199,7 +200,7 @@ public class Game
     {
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     private void eat() 
     {
         System.out.println("You have eaten now and you are not hungry any more");
