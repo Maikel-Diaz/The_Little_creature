@@ -19,7 +19,7 @@ public class Room
     private Item itemRoom;
 
     private HashMap<String, Room> exits;
-    
+    private ArrayList<Item> listaDeObjetos;
 
     /**
      * Create a room described "description". Initially, it has
@@ -27,11 +27,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, Item itemRoom) 
+    public Room(String description) 
     {
         this.description = description;
-        this.itemRoom = itemRoom;
+        listaDeObjetos = new ArrayList<Item>();
         exits = new HashMap<>();
+        
     }
 
     /**
@@ -82,11 +83,32 @@ public class Room
     public String getLongDescription()
     {
         String datos = "";
-        datos = "You are " + description + ". " + "\n" + "OH! Here is something, " + itemRoom.getItemDescription() + ", weight " + itemRoom.getItemWeight() + "\n" + getExitString();
-        if(itemRoom.getItemDescription() == null){
-            datos = "You are " + description + ". " + "\n" + getExitString();
-        }
+        datos = "You are " + description + ". " + "\n" + "OH! Here is something, " + getItem() + "\n" + getExitString();
+        
         return datos;
+    }
+    
+    /**
+     * Metodo para añadir objetos.
+     */
+    public void addItem(String itemDescription , int itemWeight)
+    {
+        Item itemNew = new Item(itemDescription ,itemWeight);
+        listaDeObjetos.add(itemNew);
+    }
+    
+    public String getItem()
+    {
+        String item = "";
+        if(listaDeObjetos.size() == 0){
+            item = "There aren't objects.";
+        }
+        else{
+            for(Item objects : listaDeObjetos){
+                item += objects.getInformation();
+            }
+        }
+        return item;
     }
 
 }

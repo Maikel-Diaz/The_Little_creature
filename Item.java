@@ -41,4 +41,8 @@ public class Item
         itemWeight = newItemWeight;
     }
     
+    public String getInformation()
+    {
+        return "Item: " + getItemDescription() + " weight: " + getItemWeight() + "\n";
+    }
 }
